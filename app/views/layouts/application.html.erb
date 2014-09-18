@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaf</title>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/spacelab/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Oxygen:300' rel='stylesheet' type='text/css'>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.6/bootstrap-growl.js"></script>-->
+
+  <style>
+      body {
+          font-family: 'Oxygen', serif;
+      }
+  </style>
+
+</head>
+<body>
+<style>
+    body {
+        padding-top: 50px;
+    }
+</style>
+
+<%= render "navbar" %>
+<div class="container">
+  <div class="row" id="wrapper">
+    <% if flash[:notice] %>
+        <script>
+            $.growl("<%= notice %>", {
+                delay: 3000,
+                timer: 1000,
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                offset: 75,
+                spacing: 100,
+                z_index: 1031,
+                type: 'info',
+                animate: {
+                    enter: 'animated bounceInRight',
+                    exit: 'animated fadeOut'
+                }
+            });
+        </script>
+    <% end %>
+    <% if flash[:alert] %>
+        <script>
+            $.growl("<%= alert %>", {
+                delay: 3000,
+                timer: 1000,
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                offset: 75,
+                spacing: 100,
+                z_index: 1031,
+                type: 'danger',
+                animate: {
+                    enter: 'animated bounceInRight',
+                    exit: 'animated fadeOut'
+                }
+            });
+        </script>
+    <% end %>
+    <%= yield %>
+    <% 3.times do %>
+        <br>
+    <% end %>
+  </div>
+</div>
+<%= render "footer" %>
+</body>
+</html>
